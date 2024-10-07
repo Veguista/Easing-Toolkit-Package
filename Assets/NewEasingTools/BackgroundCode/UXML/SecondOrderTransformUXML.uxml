@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Assets/NewEasingTools/BackgroundCode/USS/SO_CustomEditorStyles.uss?fileID=7433441132597879392&amp;guid=b5aef74b3b1b47d4081b147883bbeb07&amp;type=3#SO_CustomEditorStyles" />
+    <ui:VisualElement name="background" style="flex-grow: 1; min-width: 150px;">
+        <ui:Label tabindex="-1" text="Second Order Transform" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" style="-unity-font-style: bold; color: rgb(204, 204, 204); text-overflow: ellipsis; white-space: normal; -unity-text-align: middle-center; font-size: 20px; min-width: 115px; margin-top: 10px; margin-bottom: 5px;" />
+        <ui:VisualElement name="containerRunDynamicsInEditor" class="container" style="flex-direction: row; flex-wrap: nowrap; align-items: center; height: 45px;">
+            <ui:Label tabindex="-1" text="Run Dynamics In Editor" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" style="margin-top: 3px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; flex-grow: 1;" />
+            <CustomUI.ScalableButton name="runDynamicsInEditorToggle" style="margin-top: 5px; margin-right: 3px; margin-bottom: 3px; margin-left: 3px; flex-direction: row; flex-grow: 0; width: 22px; height: 20px; justify-content: center; align-items: center;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="containerOptions" class="container">
+            <ui:Label tabindex="-1" text="Dynamics Configuration" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />
+            <ui:DropdownField label="Dynamic Type" name="dynamicTypeDropdown" binding-path="whichDynamicType" class="dropdown" />
+            <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 10px; display: flex;" />
+            <ui:VisualElement name="axisContainer" style="flex-grow: 1; width: 100%; flex-direction: row; justify-content: space-between; margin-top: 5px; margin-bottom: 5px; display: flex;">
+                <ui:Button text="Apply X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="applyXAxisButton" focusable="false" tooltip="Whether the Second Order System should apply to this Axis." class="axisButton" />
+                <ui:Button text="Apply Y" parse-escape-sequences="true" display-tooltip-when-elided="true" name="applyYAxisButton" focusable="false" tooltip="Whether the Second Order System should apply to this Axis." class="axisButton" />
+                <ui:Button text="Apply Z" parse-escape-sequences="true" display-tooltip-when-elided="true" name="applyZAxisButton" focusable="false" tooltip="Whether the Second Order System should apply to this Axis." class="axisButton" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 15px;" />
+            <ui:DropdownField label="Input Method" name="inputMethodDropdown" binding-path="inputMode" class="dropdown" />
+            <ui:VisualElement name="containerStoredDataWarning" style="flex-grow: 1; width: 100%;">
+                <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 5px;" />
+                <ui:Label tabindex="-1" text="To use the Stored Data mode, initialize the dynamics and update the TransformData through code." parse-escape-sequences="true" display-tooltip-when-elided="true" class="dropdown" style="white-space: normal; min-height: 20px; padding-left: 3px; padding-right: 0; -unity-font-style: bold; margin-bottom: 0;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="containerFollowTransform" class="dropdown" style="width: 100%;">
+                <uie:PropertyField binding-path="followTransform" focusable="false" label="Follow Transform" name="followTransformPropertyField" class="dropdown" style="width: 100%;" />
+                <ui:VisualElement name="containerNoFollowTransformWarning" style="flex-grow: 1;">
+                    <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 5px;" />
+                    <ui:Label tabindex="-1" text="Warning: No Transform has been selected to be followed." parse-escape-sequences="true" display-tooltip-when-elided="true" class="dropdown" style="white-space: normal; min-height: 20px; padding-left: 3px; padding-right: 0; color: rgb(213, 22, 22); -unity-font-style: bold; margin-bottom: 0;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 15px;" />
+            <ui:DropdownField label="Data origin" name="dataOriginDropdown" binding-path="obtainTransformDataFromLocalOrWorld" class="dropdown" />
+            <ui:DropdownField label="Output Location" name="outputLocationDropdown" binding-path="applySecondOrderDynamicsToLocalOrWorld" class="dropdown" />
+            <ui:DropdownField label="Refresh Mode" name="refreshModeDropdown" binding-path="refreshMode" class="dropdown" />
+        </ui:VisualElement>
+        <ui:VisualElement name="containerParameters" class="container" style="height: 125px;">
+            <ui:Label tabindex="-1" text="Second Order Parameters" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />
+            <ui:Slider label="Frequency" high-value="8" name="frequencySlider" show-input-field="true" direction="Horizontal" inverted="false" low-value="0.001" binding-path="frequency" class="parameter" />
+            <ui:Slider label="Dampening" high-value="5" name="dampeningSlider" show-input-field="true" binding-path="dampening" class="parameter" />
+            <ui:Slider label="Initial Response" high-value="5" name="initialResponseSlider" show-input-field="true" low-value="-5" binding-path="initialResponse" class="parameter" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ContainerGraph" class="container">
+            <ui:Label tabindex="-1" text="Function Pre-visualization" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />
+            <CustomUI.GraphUI style="height: 80px; width: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
