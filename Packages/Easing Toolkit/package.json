@@ -5,17 +5,16 @@
   "description": "This package provides tools for easing the movement, rotation, and scaling of Transforms in a procedural and configurable way.\r\nIt also provides tools to apply Easing Functions to the user's code.",
   "unity": "2022.3",
   "unityRelease": "41f1",
-  "documentationUrl": "https://example.com/",
-  "changelogUrl": "https://example.com/changelog.html",
-  "licensesUrl": "https://example.com/licensing.html",
   "keywords": [
-    "keyword1",
-    "keyword2",
-    "keyword3"
+    "Easing",
+    "Procedural",
+    "Toolkit",
+    "Physics",
+    "Transform"
   ],
   "author": {
-    "name": "Unity",
-    "email": "unity@example.com",
-    "url": "https://www.unity3d.com"
+    "name": "Veguista",
+    "email": "pgv200080@gmail.com",
+    "url": "https://pgv200080.wixsite.com/pablogvportfolio"
   }
 }
