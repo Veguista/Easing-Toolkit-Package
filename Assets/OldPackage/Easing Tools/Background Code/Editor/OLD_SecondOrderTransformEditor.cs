@@ -365,7 +365,7 @@ public class OLD_SecondOrderTransformEditor : Editor
         #region Function pre-visualization
         using (new GUILayout.VerticalScope(EditorStyles.helpBox))
         {
-            GUILayout.Label("Function pre-visualization", EditorStyles.boldLabel);
+            GUILayout.Label("EaseType pre-visualization", EditorStyles.boldLabel);
             GUILayout.Space(5);
             DrawGraph();
             GUILayout.Space(5);

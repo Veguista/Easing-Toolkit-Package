@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace CustomUI
+namespace EasingToolkit.CustomUI
 {
     public class GraphUI : VisualElement
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SecondOrderEasing
+namespace EasingToolkit.SecondOrderDynamics
 {
     [ExecuteAlways]
     public class SecondOrderTransform : MonoBehaviour
@@ -375,7 +375,7 @@ namespace SecondOrderEasing
         {
             if (inputMode != TypeOfDataInput.storedTransformData)
             {
-                Debug.LogError("Incorrect Input Mode is selected. Users can only initialize Dynamics through code when " +
+                Debug.LogError("Incorrect Input Mode is selected. Users can only initialize SecondOrderDynamics through code when " +
                     "[storedTransformData] mode is selected.");
                 return;
             }

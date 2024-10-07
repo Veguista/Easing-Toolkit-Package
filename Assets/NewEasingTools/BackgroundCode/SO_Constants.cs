@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SecondOrderEasing
+namespace EasingToolkit.SecondOrderDynamics
 {
     public struct SO_Constants
     {

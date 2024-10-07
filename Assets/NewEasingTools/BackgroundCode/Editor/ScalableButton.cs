@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace CustomUI
+namespace EasingToolkit.CustomUI
 {
     public class ScalableButton : VisualElement
     {

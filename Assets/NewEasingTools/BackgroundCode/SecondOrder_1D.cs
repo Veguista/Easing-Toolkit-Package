@@ -1,11 +1,11 @@
 using System;
 using UnityEngine;
 
-namespace SecondOrderEasing
+namespace EasingToolkit.SecondOrderDynamics
 {
-    // System first exposed by t3ssel8r in the following video: https://www.youtube.com/watch?v=KPoeNZZ6H4s
+    // Logic of the system exposed by t3ssel8r in the following video: https://www.youtube.com/watch?v=KPoeNZZ6H4s
 
-    public struct SecondOrder_1D : ISecondOrderDynamics
+    public struct SecondOrder_1D
     {
         internal float _storedUnsmoothedTargetValue;     // Previous input.
         internal float _lastSmoothedValue, _yd;           // State Variables.
