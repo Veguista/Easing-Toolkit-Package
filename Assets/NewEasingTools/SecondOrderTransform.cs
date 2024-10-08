@@ -15,21 +15,21 @@ namespace EasingToolkit.SecondOrderDynamics
         #region Configuration variables.
 
         public enum DynamicsType { position, scale, rotation };
-        [SerializeField] DynamicsType whichDynamicType = DynamicsType.position;
+        public DynamicsType whichDynamicType = DynamicsType.position;
 
         public enum TypeOfSpace { localSpace, worldSpace };
-        [SerializeField] TypeOfSpace obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;
-        [SerializeField] TypeOfSpace applySecondOrderDynamicsToLocalOrWorld = TypeOfSpace.worldSpace;
+        public TypeOfSpace obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;
+        public TypeOfSpace applySecondOrderDynamicsToLocalOrWorld = TypeOfSpace.worldSpace;
 
 
         // When applying Second Order Dynamics to Position & Scale, we can choose to ignore certain axis.
         public bool[] axisToFollow = new bool[] { true, true, true };
 
-        private enum TypeOfTransformRefresh { update, fixedUpdate, lateUpdate };
-        [SerializeField] TypeOfTransformRefresh refreshMode = TypeOfTransformRefresh.fixedUpdate;
+        public enum TypeOfTransformRefresh { update, fixedUpdate, lateUpdate };
+        public TypeOfTransformRefresh refreshMode = TypeOfTransformRefresh.fixedUpdate;
 
-        private enum TypeOfDataInput { followTransform, storedTransformData };
-        [SerializeField] TypeOfDataInput inputMode = TypeOfDataInput.followTransform;
+        public enum TypeOfDataInput { followTransform, storedTransformData };
+        public TypeOfDataInput inputMode = TypeOfDataInput.followTransform;
 
         [SerializeField] bool _runInEditor = false;
 
