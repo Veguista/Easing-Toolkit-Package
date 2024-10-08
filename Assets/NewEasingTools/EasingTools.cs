@@ -10,70 +10,70 @@ namespace EasingToolkit
         /// <para>Input values must be within the Range [0,1] (inclusive).</para>
         /// Output values might not be within that range.
         /// </summary>
-        /// <param name="x">Value to ease. <para>Must be within the Range [0,1] (inclusive).</para></param>
+        /// <param name="inputFloat">Value to ease. <para>Must be within the Range [0,1] (inclusive).</para></param>
         /// <param name="typeOfEase">The types of Easing availible can be visualized at https://easings.net/.</param>
         /// <returns></returns>
-        public static float ApplyEase(float x, EaseType typeOfEase)
+        public static float ApplyEase(float inputFloat, EaseType typeOfEase)
         {
             // Checking the range of the input.
-            if (x < 0 || x > 1)
+            if (inputFloat < 0 || inputFloat > 1)
             {
                 Debug.LogWarning("Easing function of type [" + typeOfEase.DisplayName() + "] failed, returning 0." +
-                    "\nParameter x == [" + x + "], but x must be in the (0,1) range (inclusive).");
+                    "\nParameter inputFloat == [" + inputFloat + "], but inputFloat must be in the (0,1) range (inclusive).");
                 return 0;
             }
 
             switch (typeOfEase)
             {
                 // Sine functions:
-                case EaseType.InSine: return InSine(x);
-                case EaseType.OutSine: return OutSine(x);
-                case EaseType.InOutSine: return InOutSine(x);
+                case EaseType.InSine: return InSine(inputFloat);
+                case EaseType.OutSine: return OutSine(inputFloat);
+                case EaseType.InOutSine: return InOutSine(inputFloat);
 
                 // Quad functions:
-                case EaseType.InQuad: return InQuad(x);
-                case EaseType.OutQuad: return OutQuad(x);
-                case EaseType.InOutQuad: return InOutQuad(x);
+                case EaseType.InQuad: return InQuad(inputFloat);
+                case EaseType.OutQuad: return OutQuad(inputFloat);
+                case EaseType.InOutQuad: return InOutQuad(inputFloat);
 
                 // Cubic functions:
-                case EaseType.InCubic: return InCubic(x);
-                case EaseType.OutCubic: return OutCubic(x);
-                case EaseType.InOutCubic: return InOutCubic(x);
+                case EaseType.InCubic: return InCubic(inputFloat);
+                case EaseType.OutCubic: return OutCubic(inputFloat);
+                case EaseType.InOutCubic: return InOutCubic(inputFloat);
 
                 // Quart functions:
-                case EaseType.InQuart: return InQuart(x);
-                case EaseType.OutQuart: return OutQuart(x);
-                case EaseType.InOutQuart: return InOutQuart(x);
+                case EaseType.InQuart: return InQuart(inputFloat);
+                case EaseType.OutQuart: return OutQuart(inputFloat);
+                case EaseType.InOutQuart: return InOutQuart(inputFloat);
 
                 // Quint functions:
-                case EaseType.InQuint: return InQuint(x);
-                case EaseType.OutQuint: return OutQuint(x);
-                case EaseType.InOutQuint: return InOutQuint(x);
+                case EaseType.InQuint: return InQuint(inputFloat);
+                case EaseType.OutQuint: return OutQuint(inputFloat);
+                case EaseType.InOutQuint: return InOutQuint(inputFloat);
 
                 // Expo functions:
-                case EaseType.InExpo: return InExpo(x);
-                case EaseType.OutExpo: return OutExpo(x);
-                case EaseType.InOutExpo: return InOutExpo(x);
+                case EaseType.InExpo: return InExpo(inputFloat);
+                case EaseType.OutExpo: return OutExpo(inputFloat);
+                case EaseType.InOutExpo: return InOutExpo(inputFloat);
 
                 // Circ functions:
-                case EaseType.InCirc: return InCirc(x);
-                case EaseType.OutCirc: return OutCirc(x);
-                case EaseType.InOutCirc: return InOutCirc(x);
+                case EaseType.InCirc: return InCirc(inputFloat);
+                case EaseType.OutCirc: return OutCirc(inputFloat);
+                case EaseType.InOutCirc: return InOutCirc(inputFloat);
 
                 // Back functions:
-                case EaseType.InBack: return InBack(x);
-                case EaseType.OutBack: return OutBack(x);
-                case EaseType.InOutBack: return InOutBack(x);
+                case EaseType.InBack: return InBack(inputFloat);
+                case EaseType.OutBack: return OutBack(inputFloat);
+                case EaseType.InOutBack: return InOutBack(inputFloat);
 
                 // Elastic functions:
-                case EaseType.InElastic: return InElastic(x);
-                case EaseType.OutElastic: return OutElastic(x);
-                case EaseType.InOutElastic: return InOutElastic(x);
+                case EaseType.InElastic: return InElastic(inputFloat);
+                case EaseType.OutElastic: return OutElastic(inputFloat);
+                case EaseType.InOutElastic: return InOutElastic(inputFloat);
 
                 // Bounce functions:
-                case EaseType.InBounce: return InBounce(x);
-                case EaseType.OutBounce: return OutBounce(x);
-                case EaseType.InOutBounce: return InOutBounce(x);
+                case EaseType.InBounce: return InBounce(inputFloat);
+                case EaseType.OutBounce: return OutBounce(inputFloat);
+                case EaseType.InOutBounce: return InOutBounce(inputFloat);
             }
 
 
