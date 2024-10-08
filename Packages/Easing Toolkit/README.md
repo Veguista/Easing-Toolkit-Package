@@ -30,6 +30,36 @@ For example, the following code would calculate an eased translation of [type Ea
 
 ## SecondOrderDynamics: 
 
+A collection of tools to ease movement, rotation, scaling, and other numerical variables procedurally.
+
+Most users will mainly use the **SecondOrderTransform** component. When active, **SecondOrderTransform **components take control of one Transform element (position, rotation, or scale) of the GameObject they are attached to. That element's information is updated by following another Transform's position, rotation, or scale and applying an easing process. As a result, **SecondOrderTransform **allows users to create easing effects similar to those made by **EasingTools.ApplyEase()**, without the limitation of needing an endpoint to the transition.
+
+To start using the **SecondOrderTransform** component, drag it into a GameObject's inspector from the Project tab or add it using the "Add Component" button. The following are the options that the component offers to users:
+
+
+### Run Dynamics in Editor:
+When enabled, the **SecondOrderTransform** script will work without entering Play Mode.
+
+**_Access through code:_ **
+This element should only be accessed through the inspector, as it is only meant for debug purposes.
+
+**_WARNINGS:_ **
+Use only as a Debug tool. SecondOrderTransform might display unintended behavior during Editor Mode:
+-  Due to Unity's restrictions on script execution, the "_FixedUpdate" _refresh mode is incompatible with Editor Mode. Instead, SecondOrderTransform will default to "_Update_" refresh mode during Editor Mode.
+-  Execution during Editor Mode is incompatible with the "Stored _Transform Data_" input method.
+
+
+### Dynamics Configuration - Dynamic Type:
+Determines whether this component should apply to the Position, Rotation, or Scale of the attached GameObject.
+
+**_Access through code:_ **
+The Dynamic Type can be accessed and changed through the "_whichDynamicType_" field.
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.whichDynamicType = DynamicsType.position;
+
+**_WARNING:_ **
+Use only as a Debug too
 
 
 -------------------------------------

@@ -3,24 +3,26 @@ using EasingToolkit.SecondOrderDynamics;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] Transform target;
-
-    [Space(10)]
-
-    [SerializeField] float frequency = 3;
-    [SerializeField] float dampening = 1;
-    [SerializeField] float initialResponse = 0;
-
-    SecondOrder_Rotation mySecondOrderRotation;
+    SecondOrderTransform secondOrderTransform;
 
     private void Awake()
     {
-        mySecondOrderRotation = new SecondOrder_Rotation(frequency, dampening, initialResponse, transform.localRotation);
+        secondOrderTransform = GetComponent<SecondOrderTransform>();
     }
 
-    private void FixedUpdate()
+    float timer = 5;
+    float timeElapsed = 0;
+
+    private void Update()
     {
-        mySecondOrderRotation.UpdateConstants(new SO_Constants(frequency, dampening, initialResponse));
-        transform.rotation = mySecondOrderRotation.Update(Time.deltaTime, target.localRotation);
+        if (timeElapsed < timer)
+        {
+            timeElapsed += Time.deltaTime;
+
+            if(timeElapsed >= timer)
+            {
+                secondOrderTransform.whichDynamicType = SecondOrderTransform.DynamicsType.scale;
+            }
+        }
     }
 }

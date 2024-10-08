@@ -424,6 +424,8 @@ namespace EasingToolkit.SecondOrderDynamics
         /// </summary>
         public void ResetDynamics()
         {
+            Debug.Log("Resetting Dynamics.");
+
             if (inputMode == TypeOfDataInput.followTransform)
             {
                 InitializeSelectedDynamic();
@@ -438,7 +440,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
 
 #if UNITY_EDITOR
-        // This function makes the script execute in real time during editor if the target is selected by the user.
+        // This makes the script execute in real time during editor if the target is selected by the user.
         private void OnDrawGizmos()
         {
             // Only continue if we're repainting the scene & we want to draw in editor.
