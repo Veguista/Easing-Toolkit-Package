@@ -446,10 +446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff12262274c8f4fbefb27a4243b577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1761887669}
-  frequency: 3
-  dampening: 1
-  initialResponse: 0
 --- !u!23 &1327197613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -509,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 1327197611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.618, y: 0.98, z: 1.281}
+  m_LocalPosition: {x: 1.6285748, y: 0.98, z: 1.4095473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -531,7 +527,7 @@ MonoBehaviour:
   dampening: 0.8
   initialResponse: -0.64
   followTransform: {fileID: 1761887669}
-  whichDynamicType: 0
+  _whichDynamicType: 0
   obtainTransformDataFromLocalOrWorld: 0
   applySecondOrderDynamicsToLocalOrWorld: 0
   axisToFollow: 010001
@@ -615,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 1761887666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.618, y: 3.103, z: 1.281}
+  m_LocalPosition: {x: 1.57, y: 3.103, z: 1.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

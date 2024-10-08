@@ -15,7 +15,23 @@ namespace EasingToolkit.SecondOrderDynamics
         #region Configuration variables.
 
         public enum DynamicsType { position, scale, rotation };
-        public DynamicsType whichDynamicType = DynamicsType.position;
+        [SerializeField] DynamicsType _whichDynamicType = DynamicsType.position;
+        public DynamicsType WhichDynamicType
+        {
+            get => _whichDynamicType;
+
+            set
+            {
+                // Nothing happens if the new type is the same as the current type.
+                if (_whichDynamicType == value)
+                    return;
+
+                _whichDynamicType = value;
+
+                // Initializing the new dynamic.
+                ResetDynamics();
+            }
+        }
 
         public enum TypeOfSpace { localSpace, worldSpace };
         public TypeOfSpace obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;
@@ -177,7 +193,7 @@ namespace EasingToolkit.SecondOrderDynamics
             MyConstants = new SO_Constants(frequency, dampening, initialResponse);
 
             // Applying the new Constants.
-            switch (whichDynamicType)
+            switch (_whichDynamicType)
             {
                 case DynamicsType.position:
                     _positionDynamics.UpdateConstants(MyConstants);
@@ -212,7 +228,7 @@ namespace EasingToolkit.SecondOrderDynamics
                 return;
             }
 
-            switch (whichDynamicType)
+            switch (_whichDynamicType)
             {
                 case DynamicsType.position:
 
@@ -257,7 +273,7 @@ namespace EasingToolkit.SecondOrderDynamics
                 return;
 
 
-            switch (whichDynamicType)
+            switch (_whichDynamicType)
             {
                 case DynamicsType.position:
                     
@@ -382,7 +398,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
             _storedTransformData = transformData;
 
-            switch (whichDynamicType)
+            switch (_whichDynamicType)
             {
                 case DynamicsType.position:
                     _positionDynamics = new SecondOrder_3D(MyConstants, transformData.position);
@@ -424,8 +440,6 @@ namespace EasingToolkit.SecondOrderDynamics
         /// </summary>
         public void ResetDynamics()
         {
-            Debug.Log("Resetting Dynamics.");
-
             if (inputMode == TypeOfDataInput.followTransform)
             {
                 InitializeSelectedDynamic();

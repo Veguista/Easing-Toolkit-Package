@@ -21,7 +21,7 @@ public class TestScript : MonoBehaviour
 
             if(timeElapsed >= timer)
             {
-                secondOrderTransform.whichDynamicType = SecondOrderTransform.DynamicsType.scale;
+                secondOrderTransform.WhichDynamicType = SecondOrderTransform.DynamicsType.scale;
             }
         }
     }

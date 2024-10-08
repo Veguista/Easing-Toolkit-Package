@@ -14,7 +14,7 @@ It is found inside the **EasingTools** class. To gain access to the **EasingTool
 
 The **ApplyEase()** method takes 2 arguments:
 1. A float (**inputFloat**), in the [0,1] Range (inclusive). This is the value that will be eased.
-2. An EaseType enum (**typeOfEase**), indicating the easing process to be performed.
+2. An EaseType enum (**typeOfEase**), indicating which easing process to be performed.
 
 
 All possible Easing Functions and their visualizations can be found at [easings.net](https://easings.net/).
@@ -49,18 +49,19 @@ Use only as a Debug tool. SecondOrderTransform might display unintended behavior
 -  Execution during Editor Mode is incompatible with the "Stored _Transform Data_" input method.
 
 
+
 ### Dynamics Configuration - Dynamic Type:
 Determines whether this component should apply to the Position, Rotation, or Scale of the attached GameObject.
 
 **_Access through code:_ **
-The Dynamic Type can be accessed and changed through the "_whichDynamicType_" field.
+The Dynamic Type can be accessed and changed through the public "W_hichDynamicType_" field.
 
 > SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
-> soTransform.whichDynamicType = DynamicsType.position;
+> soTransform.WhichDynamicType = SecondOrderTransform.DynamicsType.position;
 
-**_WARNING:_ **
-Use only as a Debug too
-
+**_WARNINGS:_ **
+Changing the dynamic type forces a reset of the dynamics. The SecondOrderTransform component only tracks one dynamic at a time, and as such transitions between dynamics will not be smooth. Instead, to create such effects, it is recommended to use multiple SecondOrderTransform components simultaneously while altering their parameters.
+### 
 
 -------------------------------------
 

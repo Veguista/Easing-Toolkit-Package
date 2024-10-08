@@ -8,7 +8,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="containerOptions" class="container">
             <ui:Label tabindex="-1" text="Dynamics Configuration" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />
-            <ui:DropdownField label="Dynamic Type" name="dynamicTypeDropdown" binding-path="whichDynamicType" class="dropdown" />
+            <ui:DropdownField label="Dynamic Type" name="dynamicTypeDropdown" binding-path="_whichDynamicType" class="dropdown" />
             <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 10px; display: flex;" />
             <ui:VisualElement name="axisContainer" style="flex-grow: 1; width: 100%; flex-direction: row; justify-content: space-between; margin-top: 5px; margin-bottom: 5px; display: flex;">
                 <ui:Button text="Apply X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="applyXAxisButton" focusable="false" tooltip="Whether the Second Order System should apply to this Axis." class="axisButton" />
