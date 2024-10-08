@@ -537,7 +537,7 @@ MonoBehaviour:
   axisToFollow: 010001
   refreshMode: 0
   inputMode: 0
-  _runInEditor: 1
+  _runInEditor: 0
 --- !u!1 &1761887666
 GameObject:
   m_ObjectHideFlags: 0
