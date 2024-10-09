@@ -15,3 +15,8 @@ _Unreleased changes will be documented here._
 - Second-order dynamics logic for floats, 2D Vectors, 3D Vectors, and Quaternions.
 - SecondOrderTransform script, custom inspector script, and other supporting scripts.
 - EasingFunctions script.
+
+
+-------------------------------------
+
+**Easing Toolkit** is a Unity Package developed by Pablo Granado Valdivielso ("Veguista").

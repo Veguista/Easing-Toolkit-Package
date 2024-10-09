@@ -60,8 +60,68 @@ The Dynamic Type can be accessed and changed through the public "W_hichDynamicTy
 > soTransform.WhichDynamicType = SecondOrderTransform.DynamicsType.position;
 
 **_WARNINGS:_ **
-Changing the dynamic type forces a reset of the dynamics. The SecondOrderTransform component only tracks one dynamic at a time, and as such transitions between dynamics will not be smooth. Instead, to create such effects, it is recommended to use multiple SecondOrderTransform components simultaneously while altering their parameters.
+- Changing the dynamic type forces a reset of the dynamics. The SecondOrderTransform component only tracks one dynamic at a time, and as such transitions between dynamics will not be smooth. Instead, to create such effects, it is recommended to use multiple SecondOrderTransform components simultaneously while altering their parameters.
+
 ### 
+
+### Dynamics Configuration - Axes configuration (Apply X / Apply Y / Apply Z):
+Determines whether the SecondOrderTransform component applies its output to certain axes. It works only while using the "_Position_" and "_Scale_" dynamic types.
+
+**_Access through code:_ **
+The axes configuration can be accessed and changed through the public "axisToFollow" bool array.
+- axisToFollow[0] => Apply to X Axis.
+- axisToFollow[1] => Apply to Y Axis.
+- axisToFollow[2] => Apply to Z Axis.
+
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.axisToFollow[1] = false;	// Disabling the application of the SecondOrderTransform component to the Y Axis. 
+
+**_WARNINGS:_ **
+- The "_Rotation_" dynamic type ignores this configuration.
+- There is a known bug, where altering the Axes configuration through code will not be visually reflected in the Inspector. However, the changes are still taking effect.
+- Turning on the configuration of an Axis during runtime will result in a sudden change, as that is not the axes' intended use case. Instead, it is recommended to use multiple SecondOrderTransform components, each with different Axes Configurations, and manipulate their parameters.
+
+
+
+### Dynamics Configuration - Input Method:
+Determines which method the SecondOrderTransform uses to obtain the input Transform information. There are possible 2 options:
+- _Follow Transform_: The Transform information is obtained from another GameObject. The inspector shows the field "Follow Transform" that allows users to select which Transform to obtain the information from.
+- _Stored Transform Data_: The Transform data is inputted by the user through code. The user needs to initialize and update the selected Dynamic manually.
+
+
+**_Access through code:_ **
+To change the Input method, users can access and alter the public "inputMode" field.
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.inputMode = SecondOrderTransform.TypeOfDataInput.storedTransformData;
+
+While using the "_Follow Transform_" input mode, users can access and alter the Transform that is inputting information through the public "_followTransform_" field.
+
+> soTransform._followTransform _= < otherTransform >;
+
+While using the "_Stored Transform Data_" input mode, users need to make use of the "_TransformData_" struct.
+The "_TransformData_" struct contains 3 data fields (Vector3 "_position_", Quaternion "_rotation_", and Vector3 "_scale_"), replicating the structure of a Transform class.
+
+To store information in a "_TransformData_" struct, create a new struct and alter a field (only those fields that will be used need to be altered):
+
+> TransformData myTransformData = new TransformData();
+> myTransformData.position = new Vector3(1, 0, -1);
+> myTransformData.rotation = Quaternion.identity;
+
+To initialize a Dynamic in "_Stored Transform Data_" input mode, call the InitializeDynamicsThroughTransformData() method and pass the TransformData struct with your desired starting Transform information.
+
+> soTransform.InitializeDynamicsThroughTransformData(myTransformData);
+
+Updates to the Transform the SecondOrderTransform component is attached to do not occur autonomously while using the "_Stored Transform Data_" input mode. Instead, they occur whenever the system receives a new input of TransformData. To input TransformData to the component and refresh the dynamics, use the InputTransformDataAndUpdateDynamics() method:
+
+> soTransform.InputTransformDataAndUpdateDynamics(myTransformData);
+
+**_WARNINGS:_ **
+- When using the "_Stored Transform Data_" input method, updating the component's dynamics before initializing them will result in an error. The error will indicate that the component is trying to set certain Transform values to NaN.
+- The "_Stored Transform Data_" input method requires users to initialize the Dynamics of the component every time the Dynamic type changes.
+
+
 
 -------------------------------------
 

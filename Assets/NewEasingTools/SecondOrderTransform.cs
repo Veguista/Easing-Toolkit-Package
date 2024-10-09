@@ -33,6 +33,9 @@ namespace EasingToolkit.SecondOrderDynamics
             }
         }
 
+        public enum TypeOfDataInput { followTransform, storedTransformData };
+        public TypeOfDataInput inputMode = TypeOfDataInput.followTransform;
+
         public enum TypeOfSpace { localSpace, worldSpace };
         public TypeOfSpace obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;
         public TypeOfSpace applySecondOrderDynamicsToLocalOrWorld = TypeOfSpace.worldSpace;
@@ -44,8 +47,6 @@ namespace EasingToolkit.SecondOrderDynamics
         public enum TypeOfTransformRefresh { update, fixedUpdate, lateUpdate };
         public TypeOfTransformRefresh refreshMode = TypeOfTransformRefresh.fixedUpdate;
 
-        public enum TypeOfDataInput { followTransform, storedTransformData };
-        public TypeOfDataInput inputMode = TypeOfDataInput.followTransform;
 
         [SerializeField] bool _runInEditor = false;
 

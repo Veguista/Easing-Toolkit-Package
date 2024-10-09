@@ -10,7 +10,7 @@ public class TestScript : MonoBehaviour
         secondOrderTransform = GetComponent<SecondOrderTransform>();
     }
 
-    float timer = 5;
+    float timer = 3;
     float timeElapsed = 0;
 
     private void Update()
@@ -21,7 +21,7 @@ public class TestScript : MonoBehaviour
 
             if(timeElapsed >= timer)
             {
-                secondOrderTransform.WhichDynamicType = SecondOrderTransform.DynamicsType.scale;
+                secondOrderTransform.inputMode = SecondOrderTransform.TypeOfDataInput.storedTransformData;
             }
         }
     }
