@@ -30,7 +30,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="Space" style="flex-grow: 1; width: 100%; height: 15px;" />
             <ui:DropdownField label="Data origin" name="dataOriginDropdown" binding-path="obtainTransformDataFromLocalOrWorld" class="dropdown" />
-            <ui:DropdownField label="Output Location" name="outputLocationDropdown" binding-path="applySecondOrderDynamicsToLocalOrWorld" class="dropdown" />
+            <ui:DropdownField label="Output Location" name="outputLocationDropdown" binding-path="applyDynamicsToLocalOrWorld" class="dropdown" />
             <ui:DropdownField label="Refresh Mode" name="refreshModeDropdown" binding-path="refreshMode" class="dropdown" />
         </ui:VisualElement>
         <ui:VisualElement name="containerParameters" class="container" style="height: 125px;">

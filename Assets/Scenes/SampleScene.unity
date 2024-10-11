@@ -528,11 +528,11 @@ MonoBehaviour:
   initialResponse: -0.64
   followTransform: {fileID: 1761887669}
   _whichDynamicType: 0
-  obtainTransformDataFromLocalOrWorld: 0
-  applySecondOrderDynamicsToLocalOrWorld: 0
-  axisToFollow: 010101
-  refreshMode: 0
   inputMode: 0
+  obtainTransformDataFromLocalOrWorld: 0
+  applyDynamicsToLocalOrWorld: 1
+  axisToFollow: 010001
+  refreshMode: 0
   _runInEditor: 0
 --- !u!1 &1761887666
 GameObject:

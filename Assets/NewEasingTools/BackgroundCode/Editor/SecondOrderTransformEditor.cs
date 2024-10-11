@@ -17,7 +17,7 @@ namespace EasingToolkit.CustomUI
 
         // References to parts of the inspector.
         VisualElement containerRunDynamicsInEditor, activeAxisContainer, containerFollowTransform, 
-            containerNoFollowTransformWarning, containerStoredDataWarning, dataOriginDropdown;
+            containerNoFollowTransformWarning, containerStoredDataWarning, dataOriginDropdown, refreshModeDropdown;
         GraphUI graphVisualElement;
 
         public override VisualElement CreateInspectorGUI()
@@ -57,6 +57,7 @@ namespace EasingToolkit.CustomUI
             containerNoFollowTransformWarning = myInspectorRoot.Q<VisualElement>("containerNoFollowTransformWarning");
             containerStoredDataWarning = myInspectorRoot.Q<VisualElement>("containerStoredDataWarning");
             dataOriginDropdown = myInspectorRoot.Q<VisualElement>("dataOriginDropdown");
+            refreshModeDropdown = myInspectorRoot.Q<VisualElement>("refreshModeDropdown");
 
             myInspectorRoot.Q<PropertyField>("followTransformPropertyField").RegisterValueChangeCallback(ChangedFollowTransform);
             myInspectorRoot.Q<DropdownField>("inputMethodDropdown").RegisterCallback<ChangeEvent<string>>(ChangedInputMethod);
@@ -262,12 +263,14 @@ namespace EasingToolkit.CustomUI
                     containerFollowTransform.style.display = DisplayStyle.Flex;
                     containerStoredDataWarning.style.display = DisplayStyle.None;
                     dataOriginDropdown.style.display = DisplayStyle.Flex;
+                    refreshModeDropdown.style.display = DisplayStyle.Flex;
                     break;
 
                 case "Stored Transform Data":
                     containerFollowTransform.style.display = DisplayStyle.None;
                     containerStoredDataWarning.style.display = DisplayStyle.Flex;
                     dataOriginDropdown.style.display = DisplayStyle.None;
+                    refreshModeDropdown.style.display = DisplayStyle.None;
                     break;
 
                 default:

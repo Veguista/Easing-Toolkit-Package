@@ -14,7 +14,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
         #region Configuration variables.
 
-        public enum DynamicsType { position, scale, rotation };
+        public enum DynamicsType { position, rotation, scale };
         [SerializeField] DynamicsType _whichDynamicType = DynamicsType.position;
         public DynamicsType WhichDynamicType
         {
@@ -38,14 +38,14 @@ namespace EasingToolkit.SecondOrderDynamics
 
         public enum TypeOfSpace { localSpace, worldSpace };
         public TypeOfSpace obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;
-        public TypeOfSpace applySecondOrderDynamicsToLocalOrWorld = TypeOfSpace.worldSpace;
+        public TypeOfSpace applyDynamicsToLocalOrWorld = TypeOfSpace.worldSpace;
 
 
         // When applying Second Order Dynamics to Position & Scale, we can choose to ignore certain axis.
         public bool[] axisToFollow = new bool[] { true, true, true };
 
-        public enum TypeOfTransformRefresh { update, fixedUpdate, lateUpdate };
-        public TypeOfTransformRefresh refreshMode = TypeOfTransformRefresh.fixedUpdate;
+        public enum TypeOfDynamicsRefresh { update, fixedUpdate, lateUpdate };
+        public TypeOfDynamicsRefresh refreshMode = TypeOfDynamicsRefresh.fixedUpdate;
 
 
         [SerializeField] bool _runInEditor = false;
@@ -105,7 +105,7 @@ namespace EasingToolkit.SecondOrderDynamics
 #if UNITY_EDITOR        // We allow for Dynamic Updates in our Editor only if we have the _runInEditor option enabled.
 
             if (_runInEditor && !Application.isPlaying           // Fixed update does not work in editor mode, so we put it here.
-                && (refreshMode == TypeOfTransformRefresh.update || refreshMode == TypeOfTransformRefresh.fixedUpdate))
+                && (refreshMode == TypeOfDynamicsRefresh.update || refreshMode == TypeOfDynamicsRefresh.fixedUpdate))
             {
                 UpdateDynamics();
                 return;
@@ -115,7 +115,7 @@ namespace EasingToolkit.SecondOrderDynamics
 #endif
 
             // We only run this code once, in our selected Refresh Mode.
-            if (refreshMode != TypeOfTransformRefresh.update)
+            if (refreshMode != TypeOfDynamicsRefresh.update)
                 return;
 
             UpdateDynamics();
@@ -129,7 +129,7 @@ namespace EasingToolkit.SecondOrderDynamics
                 return;
 
             // We only run this code once, in our selected Refresh Mode.
-            if (refreshMode != TypeOfTransformRefresh.lateUpdate)
+            if (refreshMode != TypeOfDynamicsRefresh.lateUpdate)
                 return;
 
 #if UNITY_EDITOR    // We allow for Dynamic Updates in our Editor only if we have the _runInEditor option enabled.
@@ -158,7 +158,7 @@ namespace EasingToolkit.SecondOrderDynamics
 #endif
 
             // We only run this code once, in our selected Refresh Mode.
-            if (refreshMode != TypeOfTransformRefresh.fixedUpdate)
+            if (refreshMode != TypeOfDynamicsRefresh.fixedUpdate)
                 return;
 
             // When the inputMode [storedTransformData] is selected, all updates to the Dynamics are controlled through the 
@@ -290,7 +290,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
                     Vector3 easedPosition = _positionDynamics.Update(deltaTime, targetPosition);
 
-                    Vector3 thisTransformsPosition = applySecondOrderDynamicsToLocalOrWorld == TypeOfSpace.worldSpace ?
+                    Vector3 thisTransformsPosition = applyDynamicsToLocalOrWorld == TypeOfSpace.worldSpace ?
                         transform.position : transform.localPosition;
 
                     easedPosition = new Vector3(axisToFollow[0] ? easedPosition.x : thisTransformsPosition.x,
@@ -298,7 +298,7 @@ namespace EasingToolkit.SecondOrderDynamics
                                                 axisToFollow[2] ? easedPosition.z : thisTransformsPosition.z);
 
 
-                    if(applySecondOrderDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
+                    if(applyDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
                         transform.localPosition = easedPosition;
                     else
                         transform.position = easedPosition;
@@ -318,7 +318,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
                     Quaternion easedRotation = _rotationDynamics.Update(deltaTime, targetRotation);
 
-                    if (applySecondOrderDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
+                    if (applyDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
                         transform.localRotation = easedRotation;
                     else
                         transform.rotation = easedRotation;
@@ -338,14 +338,14 @@ namespace EasingToolkit.SecondOrderDynamics
 
                     Vector3 easedScale = _scaleDynamics.Update(deltaTime, targetScale);
 
-                    Vector3 thisTransformsScale = applySecondOrderDynamicsToLocalOrWorld == TypeOfSpace.worldSpace ?
+                    Vector3 thisTransformsScale = applyDynamicsToLocalOrWorld == TypeOfSpace.worldSpace ?
                         transform.lossyScale : transform.localScale;
 
                     easedScale = new Vector3(axisToFollow[0] ? easedScale.x : thisTransformsScale.x,
                                              axisToFollow[1] ? easedScale.y : thisTransformsScale.y,
                                              axisToFollow[2] ? easedScale.z : thisTransformsScale.z);
 
-                    if (applySecondOrderDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
+                    if (applyDynamicsToLocalOrWorld == TypeOfSpace.localSpace)
                         transform.localScale = easedScale;
                     
                     // Because global scale cannot be directly altered (lossyScale is ReadOnly), we do a little trick.
