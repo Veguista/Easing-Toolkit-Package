@@ -35,9 +35,9 @@
         </ui:VisualElement>
         <ui:VisualElement name="containerParameters" class="container" style="height: 125px;">
             <ui:Label tabindex="-1" text="Second Order Parameters" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />
-            <ui:Slider label="Frequency" high-value="8" name="frequencySlider" show-input-field="true" direction="Horizontal" inverted="false" low-value="0.001" binding-path="frequency" class="parameter" />
-            <ui:Slider label="Dampening" high-value="5" name="dampeningSlider" show-input-field="true" binding-path="dampening" class="parameter" />
-            <ui:Slider label="Initial Response" high-value="5" name="initialResponseSlider" show-input-field="true" low-value="-5" binding-path="initialResponse" class="parameter" />
+            <ui:Slider label="Frequency" name="frequencySlider" show-input-field="true" direction="Horizontal" inverted="false" low-value="0.001" binding-path="_frequency" high-value="8" class="parameter" />
+            <ui:Slider label="Dampening" high-value="5" name="dampeningSlider" show-input-field="true" binding-path="_dampening" class="parameter" />
+            <ui:Slider label="Initial Response" high-value="5" name="initialResponseSlider" show-input-field="true" low-value="-5" binding-path="_initialResponse" class="parameter" />
         </ui:VisualElement>
         <ui:VisualElement name="ContainerGraph" class="container" style="flex-grow: 1;">
             <ui:Label tabindex="-1" text="Function Pre-visualization" parse-escape-sequences="true" display-tooltip-when-elided="true" class="titles" />

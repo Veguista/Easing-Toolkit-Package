@@ -5,10 +5,84 @@ namespace EasingToolkit.SecondOrderDynamics
     [ExecuteAlways]
     public class SecondOrderTransform : MonoBehaviour
     {
-        // Public variables and references.
-        public float frequency = 1.0f;
-        public float dampening = 1.0f;
-        public float initialResponse = 0.0f;
+        #region Parameters
+
+        [SerializeField] float _frequency = 1.0f;
+        [SerializeField] float _dampening = 1.0f;
+        [SerializeField] float _initialResponse = 0.0f;
+
+        // Public access
+        public float Frequency
+        {
+            get => _frequency;
+
+            set
+            {
+                if (value == _frequency)
+                    return;
+
+                // Warning if the new Frequency value is outside the accepted range (0, +_infinite]
+                if (value <= 0)
+                {
+                    Debug.LogWarning("Negative values or values equal to 0 are not supported for the frequency of a Second Order Dynamics system." +
+                        "\nThe frequency value has not changed as a result.");
+                    return;
+                }
+
+                _frequency = value;
+
+                // Updating the constants in our Dynamics.
+                UpdateSecondOrderParameters();
+            }
+        }
+
+        public float Dampening
+        {
+            get => _dampening;
+
+            set
+            {
+                if(value == _dampening)
+                    return;
+
+                // Warning if the new Dampening value is outside the accepted range [0, +_infinite]
+                if (value < 0)
+                {
+                    Debug.LogWarning("Negative values are not supported for the [Dampening] parameter of a Second Order Dynamics system." +
+                    "\nThe dampening value has not changed as a result.");
+                    return;
+                }
+
+                // Warning for Dampening values of 0.
+                if (value == 0)
+                    Debug.LogWarning("A dampening value of 0 will result in a system that won't ever deccelerate. " +
+                        "Are you sure that you want to set to 0 the [Dampening] parameter of a Second Order Dynamics system?");
+
+                _dampening = value;
+
+                // Updating the constants in our Dynamics.
+                UpdateSecondOrderParameters();
+            }
+        }
+
+        public float InitialResponse
+        {
+            get => _initialResponse;
+
+            set
+            {
+                if(value == _initialResponse)
+                    return;
+
+                _initialResponse = value;
+
+                // Updating the constants in our Dynamics.
+                UpdateSecondOrderParameters();
+            }
+        }
+
+
+        #endregion
 
         public Transform followTransform;
 
@@ -60,7 +134,7 @@ namespace EasingToolkit.SecondOrderDynamics
             get
             {
                 if(_myConstants == null)
-                    _myConstants = new SO_Constants(frequency, dampening, initialResponse);
+                    _myConstants = new SO_Constants(_frequency, _dampening, _initialResponse);
 
                 return _myConstants.Value;
             }
@@ -173,25 +247,25 @@ namespace EasingToolkit.SecondOrderDynamics
         #region Local Functions
 
         /// <summary>
-        /// Updates the values of frequency, dampening, and initial response in the scripts Dynamics.
+        /// Updates the values of _frequency, _dampening, and initial response in the scripts Dynamics.
         /// <para>It also clamps those same values.</para>
         /// </summary>
         public void UpdateSecondOrderParameters()
         {
             // Clamping the parameters values.
-            if (frequency <= 0)
-                frequency = 0.0001f;
+            if (_frequency <= 0)
+                _frequency = 0.0001f;
 
-            if (dampening < 0)
-                dampening = 0;
+            if (_dampening < 0)
+                _dampening = 0;
 
             const float maxInitialResponseValue = 10f;
 
-            if (Mathf.Abs(initialResponse) > maxInitialResponseValue)
-                initialResponse = Mathf.Sign(initialResponse) * maxInitialResponseValue;
+            if (Mathf.Abs(_initialResponse) > maxInitialResponseValue)
+                _initialResponse = Mathf.Sign(_initialResponse) * maxInitialResponseValue;
 
             // Recalculating the Constants.
-            MyConstants = new SO_Constants(frequency, dampening, initialResponse);
+            MyConstants = new SO_Constants(_frequency, _dampening, _initialResponse);
 
             // Applying the new Constants.
             switch (_whichDynamicType)
@@ -364,14 +438,14 @@ namespace EasingToolkit.SecondOrderDynamics
         }
 
         /// <summary>
-        /// We check that our frequency has correct values (otherwise the whole thing doesn't work)
+        /// We check that our _frequency has correct values (otherwise the whole thing doesn't work)
         /// </summary>
         /// <returns></returns>
         private bool IsFrequencyUnder0()
         {
-            if (frequency <= 0) 
+            if (_frequency <= 0) 
             {
-                Debug.LogError("frequency must have a value above 0. Current value equals " + frequency);
+                Debug.LogError("_frequency must have a value above 0. Current value equals " + _frequency);
                 return true;
             }
 

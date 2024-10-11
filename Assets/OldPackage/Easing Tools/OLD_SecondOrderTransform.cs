@@ -105,9 +105,9 @@ public class OLD_SecondOrderTransform : MonoBehaviour
             return;
 #endif
 
-        if (frequency <= 0) // We check that our frequency has correct values (otherwise the whole thing doesn't work.
+        if (frequency <= 0) // We check that our _frequency has correct values (otherwise the whole thing doesn't work.
         {
-            Debug.LogError("frequency must have a value above 0. Current value equals " + frequency);
+            Debug.LogError("_frequency must have a value above 0. Current value equals " + frequency);
             return;
         }
 

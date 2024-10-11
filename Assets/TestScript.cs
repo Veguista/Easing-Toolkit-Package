@@ -10,19 +10,8 @@ public class TestScript : MonoBehaviour
         secondOrderTransform = GetComponent<SecondOrderTransform>();
     }
 
-    float timer = 3;
-    float timeElapsed = 0;
-
     private void Update()
     {
-        if (timeElapsed < timer)
-        {
-            timeElapsed += Time.deltaTime;
-
-            if(timeElapsed >= timer)
-            {
-                secondOrderTransform.inputMode = SecondOrderTransform.TypeOfDataInput.storedTransformData;
-            }
-        }
+        secondOrderTransform.Frequency += 0.01f;
     }
 }

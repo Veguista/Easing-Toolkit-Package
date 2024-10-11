@@ -160,7 +160,7 @@ namespace EasingToolkit.CustomUI
 
         private void UpdateGraphVisuals()
         {
-            graphVisualElement.UpdateGraph(CalculateGraph(transformScript.MyConstants, transformScript.frequency));
+            graphVisualElement.UpdateGraph(CalculateGraph(transformScript.MyConstants, transformScript.Frequency));
         }
 
         #endregion

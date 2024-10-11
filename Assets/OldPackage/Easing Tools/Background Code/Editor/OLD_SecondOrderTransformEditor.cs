@@ -333,23 +333,23 @@ public class OLD_SecondOrderTransformEditor : Editor
             GUILayout.Space(10);
             
             // Frequency
-            float newFrequency = EditorGUILayout.Slider("frequency", MyScript.frequency, 0.0001f, 8);
+            float newFrequency = EditorGUILayout.Slider("_frequency", MyScript.frequency, 0.0001f, 8);
             if(newFrequency != MyScript.frequency)
             {
-                Undo.RecordObject(MyScript, "change SecondOrderTransform frequency");
+                Undo.RecordObject(MyScript, "change SecondOrderTransform _frequency");
                 MyScript.frequency = newFrequency;
             }
 
             // Damping
-            float newDamping = EditorGUILayout.Slider("dampening", MyScript.damping, 0, 5);
+            float newDamping = EditorGUILayout.Slider("_dampening", MyScript.damping, 0, 5);
             if (newDamping != MyScript.damping)
             {
-                Undo.RecordObject(MyScript, "change SecondOrderTransform dampening");
+                Undo.RecordObject(MyScript, "change SecondOrderTransform _dampening");
                 MyScript.damping = newDamping;
             }
 
             // Damping
-            float newInitialResponse = EditorGUILayout.Slider("initialResponse", MyScript.initialResponse, -6, 6);
+            float newInitialResponse = EditorGUILayout.Slider("_initialResponse", MyScript.initialResponse, -6, 6);
             if (newInitialResponse != MyScript.initialResponse)
             {
                 Undo.RecordObject(MyScript, "change SecondOrderTransform initial response");

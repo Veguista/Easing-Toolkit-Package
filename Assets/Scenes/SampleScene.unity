@@ -523,9 +523,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7512b1a8a08318c4cb8d42a8ab3073c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frequency: 0.5
-  dampening: 0.8
-  initialResponse: -0.64
+  _frequency: 8
+  _dampening: 0.46
+  _initialResponse: 0
   followTransform: {fileID: 1761887669}
   _whichDynamicType: 0
   inputMode: 0
