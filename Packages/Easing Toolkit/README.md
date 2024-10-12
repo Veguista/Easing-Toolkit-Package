@@ -37,8 +37,8 @@ Most users will mainly use the **SecondOrderTransform** component. When active, 
 To start using the **SecondOrderTransform** component, drag it into a GameObject's inspector from the Project tab or add it using the "Add Component" button. The following are the options that the component offers to users:
 
 
-### Run Dynamics in Editor:
-When enabled, the **SecondOrderTransform** script will work without entering Play Mode.
+### Run Dynamics in Editor
+When enabled, the SecondOrderTransform script will work without entering Play Mode.
 
 **_Access through code:_ **
 This element should only be accessed through the inspector, as it is only meant for debug purposes.
@@ -50,7 +50,7 @@ Use only as a Debug tool. SecondOrderTransform might display unintended behavior
 
 
 
-### Dynamics Configuration - Dynamic Type:
+### Dynamics Configuration - Dynamic Type
 Determines whether this component should apply to the Position, Rotation, or Scale of the attached GameObject.
 
 **_Access through code:_ **
@@ -64,7 +64,7 @@ The Dynamic Type can be accessed and changed through the public "W_hichDynamicTy
 
 ### 
 
-### Dynamics Configuration - Axes configuration (Apply X / Apply Y / Apply Z):
+### Dynamics Configuration - Axes configuration (Apply X / Apply Y / Apply Z)
 Determines whether the SecondOrderTransform component applies its output to certain axes. It works only while using the "_Position_" and "_Scale_" dynamic types.
 
 **_Access through code:_ **
@@ -84,7 +84,7 @@ The axes configuration can be accessed and changed through the public "axisToFol
 
 
 
-### Dynamics Configuration - Input Method:
+### Dynamics Configuration - Input Method
 Determines which method the SecondOrderTransform uses to obtain the input Transform information. There are possible 2 options:
 - _Follow Transform_: The Transform information is obtained from another GameObject. The inspector shows the field "Follow Transform" that allows users to select which Transform to obtain the information from.
 - _Stored Transform Data_: The Transform data is inputted by the user through code. The user needs to initialize and update the selected Dynamic manually.
@@ -120,6 +120,81 @@ Updates to the Transform the SecondOrderTransform component is attached to do no
 **_WARNINGS:_ **
 - When using the "_Stored Transform Data_" input method, updating the component's dynamics before initializing them will result in an error. The error will indicate that the component is trying to set certain Transform values to NaN.
 - The "_Stored Transform Data_" input method requires users to initialize the Dynamics of the component every time the Dynamic type changes.
+
+
+
+### Dynamics Configuration - Data Origin
+Determines whether the Transform information is fetched locally or globally while using the "_Follow Transform_" input mode (Ex. Whether we are getting a Transform's "localPosition" or "worldPosition" to feed into the SecondOrderTransform component).
+
+There are 2 possible options:
+- _Local Space._
+- _World Space._
+
+
+_**Access through code:**_
+The data origin can be accessed and changed through the public "obtainTransformDataFromLocalOrWorld" field.
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.obtainTransformDataFromLocalOrWorld = TypeOfSpace.worldSpace;	// The TypeOfSpace enum is used here and at the Output Location section.
+
+**_WARNINGS:_ **
+- This configuration is ignored while using the "_Stored Transform Data_" input mode (because the system does not need to fetch its Transform information).
+
+
+
+### Dynamics Configuration - Output Location
+Determines whether the results from the Second Order Dynamics are applied to the Transform locally or globally (Ex. We obtain an eased Quaternion as a result of updating our Second Order Dynamics. Do we set the Transform's "localRotation" or its "worldRotation"?).
+
+There are 2 possible options:
+- _Local Space._
+- _World Space._
+
+
+**_Access through code:_ **
+The output location can be accessed and changed through the public "applyDynamicsToLocalOrWorld" field.
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.applyDynamicsToLocalOrWorld= TypeOfSpace.localSpace;	// The TypeOfSpace enum is used here and in the Data Origin section.
+
+
+### Dynamics Configuration - Refresh Mode
+Determines when the dynamics of the Second Order Transform component update while using the "_Follow Transform_" input mode. There are 3 possible options:
+- _Update_: Every frame before all physics calculations have been performed.
+- _Fixed Update_: Every 0.02 secs.
+- _Late Update_: Every frame after all physics calculations have been performed.
+
+
+_**Access through code:**_
+The refresh mode can be accessed and changed through the public "refreshMode" field.
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.refreshMode = TypeOfDynamicsRefresh.fixedUpdate;
+
+**_WARNINGS:_ **
+- This configuration is ignored while using the "_Stored Transform Data_" input mode (because the system updates at the user's command).
+- Be careful with updating physics-sensitive Transforms using the "Update" mode, as it will update its dynamics before any internal Unity-physics calculations.
+
+
+
+### Second Order Parameters
+Three main parameters control a Second Order Transform component:
+- Frequency: It controls the speed at which the system develops. Higher values will result in a shorter response time. [Warning => Must be bigger than 0]
+- Dampening: It controls the amount of dampening applied to the system. Values of 1 or higher produce steady transitions to the target value. Values between 0 and 1 will result in a vibrating system, where the target value will be overshot and the system will vibrate around it. A value of 0 will result in no dampening at all, thus creating a system that will vibrate around a value forever (not recommended).  [Warning => Must be equal to or bigger than 0]
+- Initial Response: The initial velocity of the system whenever a new input is placed. When positive and under 1, the system will respond faster to changes. When positive and over 1, the system will have so much initial velocity that it will overshoot its target. When negative, the system will start with an opposite velocity to the target value.
+
+
+**_Access through code:_ **
+The three parameters can be accessed and changed through the following public pointers:
+- Frequency => "_Frequency_" public float.
+- Dampening => "_Dampening_" public float.
+- Initial Response => "InitialResponse" public float.
+
+
+> SecondOrderTransform soTransform = GetComponent<SecondOrderTransform>();
+> soTransform.InitialResponse = 0;
+
+**_WARNINGS:_ **
+- Trying to set a parameter's value to one outside its range will not be allowed by the system. Instead, a Warning message will be produced.
 
 
 

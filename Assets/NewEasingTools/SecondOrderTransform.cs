@@ -252,18 +252,6 @@ namespace EasingToolkit.SecondOrderDynamics
         /// </summary>
         public void UpdateSecondOrderParameters()
         {
-            // Clamping the parameters values.
-            if (_frequency <= 0)
-                _frequency = 0.0001f;
-
-            if (_dampening < 0)
-                _dampening = 0;
-
-            const float maxInitialResponseValue = 10f;
-
-            if (Mathf.Abs(_initialResponse) > maxInitialResponseValue)
-                _initialResponse = Mathf.Sign(_initialResponse) * maxInitialResponseValue;
-
             // Recalculating the Constants.
             MyConstants = new SO_Constants(_frequency, _dampening, _initialResponse);
 
