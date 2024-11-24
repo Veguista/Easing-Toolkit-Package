@@ -2,7 +2,7 @@
   "name": "com.veguista.easing_toolkit",
   "version": "1.0.0",
   "displayName": "Easing Toolkit",
-  "description": "This package provides tools for easing the movement, rotation, and scaling of Transforms in a procedural and configurable way.\r\nIt also provides tools to apply Easing Functions to the user's code.",
+  "description": "This package provides tools for easing the movement, rotation, and scaling of Transforms in a procedural and configurable way.\r\nIt also provides tools to apply Easing Interpolations to the user's code.",
   "unity": "2022.3",
   "unityRelease": "41f1",
   "keywords": [
