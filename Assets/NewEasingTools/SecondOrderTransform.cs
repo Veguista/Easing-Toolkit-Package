@@ -24,8 +24,8 @@ namespace EasingToolkit.SecondOrderDynamics
                 // Warning if the new Frequency value is outside the accepted range (0, +_infinite]
                 if (value <= 0)
                 {
-                    Debug.LogWarning("Negative values or values equal to 0 are not supported for the frequency of a Second Order Dynamics system." +
-                        "\nThe frequency value has not changed as a result.");
+                    Debug.LogWarning("Negative or equal to 0 values are not supported in the [Frequency] parameter of a " +
+                        "Second Order Dynamics system." + "\nThe frequency value has not changed as a result.");
                     return;
                 }
 
@@ -48,7 +48,7 @@ namespace EasingToolkit.SecondOrderDynamics
                 // Warning if the new Dampening value is outside the accepted range [0, +_infinite]
                 if (value < 0)
                 {
-                    Debug.LogWarning("Negative values are not supported for the [Dampening] parameter of a Second Order Dynamics system." +
+                    Debug.LogWarning("Negative values are not supported in the [Dampening] parameter of a Second Order Dynamics system." +
                     "\nThe dampening value has not changed as a result.");
                     return;
                 }

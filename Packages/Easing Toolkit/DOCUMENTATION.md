@@ -1,4 +1,29 @@
-# Readme
+# Easing Toolkit - Documentation
+
+## Index
+
+1. [Overview](#overview)
+2. [Package Contents](#packageContents)
+3. [Installation instructions](#installationInstructions)
+4. [Requirements](#requirements)
+5. [Basic Workflow](#basicWorkflow)
+6. [Advanced Workflow](#advancedWorkflow)
+
+
+## Overview {#overview}
+
+## Package contents {#packageContents}
+
+## Installation instructions {#installationInstructions}
+
+## Requirements {#requirements}
+
+## Basic Workflow {#basicWorkflow}
+
+## Advanced Workflow {#advancedWorkflow}
+
+
+
 
 **Easing Toolkit** is comprised of 2 complimentary but separate parts:
 
