@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caff12262274c8f4fbefb27a4243b577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondOrderTransform: {fileID: 0}
 --- !u!23 &1327197613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -531,7 +532,7 @@ MonoBehaviour:
   inputMode: 0
   obtainTransformDataFromLocalOrWorld: 0
   applyDynamicsToLocalOrWorld: 1
-  axisToFollow: 010001
+  axisToFollow: "\x01"
   refreshMode: 0
   _runInEditor: 0
 --- !u!1 &1761887666
@@ -545,6 +546,7 @@ GameObject:
   - component: {fileID: 1761887669}
   - component: {fileID: 1761887668}
   - component: {fileID: 1761887667}
+  - component: {fileID: 1761887670}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -617,6 +619,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1761887670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761887666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9156836570cb4443b672e945d885ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _frequency: 1
+  _dampening: 1
+  _initialResponse: 0
+  followTransform: {fileID: 0}
+  _whichDynamicType: 0
+  inputMode: 0
+  obtainTransformDataFromLocalOrWorld: 1
+  applyDynamicsToLocalOrWorld: 1
+  axisToFollow: 010101
+  refreshMode: 1
+  _runInEditor: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -47,6 +47,7 @@ namespace EasingToolkit.SecondOrderDynamics
             _dynamics_Z._myConstants = constants;
             _dynamics_W._myConstants = constants;
         }
+        public void UpdateConstants(float f, float z, float r) => UpdateConstants(new SO_Constants(f, z, r));
 
         public void Reset()
         {

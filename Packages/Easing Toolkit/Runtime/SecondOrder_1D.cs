@@ -50,6 +50,7 @@ namespace EasingToolkit.SecondOrderDynamics
         }
 
         public void UpdateConstants(SO_Constants constants) => _myConstants = constants;
+        public void UpdateConstants(float f, float z, float r) => UpdateConstants(new SO_Constants(f, z, r));
 
         public void Reset()
         {
