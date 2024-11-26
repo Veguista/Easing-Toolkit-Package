@@ -11,7 +11,7 @@ namespace EasingToolkit.SecondOrderDynamics
 
         SecondOrder_1D _dynamics_X, _dynamics_Y, _dynamics_Z, _dynamics_W;
 
-        public Quaternion Update(float deltaTime, Quaternion targetRotation)
+        public Quaternion Update(float deltaTime, Quaternion targetValue)
         {
             // Error catching.
             if (deltaTime <= 0)
@@ -23,14 +23,14 @@ namespace EasingToolkit.SecondOrderDynamics
             // Making sure the new rotation is the shortest-way-around to the previous rotation.
             bool hasUnrolledQuaternion = false;
 
-            if (ReturnShortestWayAroundToRotation(ref targetRotation, _lastSmoothedRotation))
+            if (ReturnShortestWayAroundToRotation(ref targetValue, _lastSmoothedRotation))
                 hasUnrolledQuaternion = true;
 
 
-            _lastSmoothedRotation.x = _dynamics_X.Update(deltaTime, targetRotation.x);
-            _lastSmoothedRotation.y = _dynamics_Y.Update(deltaTime, targetRotation.y);
-            _lastSmoothedRotation.z = _dynamics_Z.Update(deltaTime, targetRotation.z);
-            _lastSmoothedRotation.w = _dynamics_W.Update(deltaTime, targetRotation.w);
+            _lastSmoothedRotation.x = _dynamics_X.Update(deltaTime, targetValue.x);
+            _lastSmoothedRotation.y = _dynamics_Y.Update(deltaTime, targetValue.y);
+            _lastSmoothedRotation.z = _dynamics_Z.Update(deltaTime, targetValue.z);
+            _lastSmoothedRotation.w = _dynamics_W.Update(deltaTime, targetValue.w);
 
 
             if (hasUnrolledQuaternion)
@@ -40,14 +40,14 @@ namespace EasingToolkit.SecondOrderDynamics
             return _lastSmoothedRotation;
         }
 
-        public void UpdateConstants(SO_Constants constants)
+        public void ChangeConstants(SO_Constants constants)
         {
-            _dynamics_X._myConstants = constants;
-            _dynamics_Y._myConstants = constants;
-            _dynamics_Z._myConstants = constants;
-            _dynamics_W._myConstants = constants;
+            _dynamics_X.ChangeConstants(constants);
+            _dynamics_Y.ChangeConstants(constants);
+            _dynamics_Z.ChangeConstants(constants);
+            _dynamics_W.ChangeConstants(constants);
         }
-        public void UpdateConstants(float f, float z, float r) => UpdateConstants(new SO_Constants(f, z, r));
+        public void ChangeConstants(float frequency, float dampening, float initialResponse) => ChangeConstants(new SO_Constants(frequency, dampening, initialResponse));
 
         public void Reset()
         {
@@ -60,7 +60,7 @@ namespace EasingToolkit.SecondOrderDynamics
         }
 
 
-        #region Private functions
+        #region Private Quaternion functions
 
         // To understand what it means to unroll Quaternions, check https://theorangeduck.com/page/unrolling-rotations.
 
@@ -103,8 +103,7 @@ namespace EasingToolkit.SecondOrderDynamics
             _lastSmoothedRotation = originalRotation;
         }
 
-
-        // Fast constructor
+        // Streamlined constructor.
         public SecondOrder_Rotation(SO_Constants constants, Quaternion originalRotation)
         {
             _dynamics_X = new SecondOrder_1D(constants, originalRotation.x);

@@ -349,7 +349,6 @@ namespace EasingToolkit.SecondOrderDynamics
                     else
                         targetPosition = followTransform.localPosition;
 
-
                     Vector3 easedPosition = _positionDynamics.Update(deltaTime, targetPosition);
 
                     Vector3 thisTransformsPosition = applyDynamicsToLocalOrWorld == TypeOfSpace.worldSpace ?

@@ -12,7 +12,7 @@ namespace EasingToolkit.SecondOrderDynamics
         internal SO_Constants _myConstants;              // The w, z, d, k1, k2, k3 constants;
 
 
-        public Vector2 Update(float deltaTime, Vector2 position, Vector2 inputVelocity)
+        public Vector2 Update(float deltaTime, Vector2 targetValue, Vector2 inputVelocity)
         {
             // Error catching.
             if (deltaTime <= 0)
@@ -40,14 +40,14 @@ namespace EasingToolkit.SecondOrderDynamics
                 k2_stable = deltaTime * t2;
             }
 
-            _storedUnsmoothedPosition = position;
-            _lastSmoothedPosition = _lastSmoothedPosition + deltaTime * _yd; // Integrate position by velocity.
-            _yd = _yd + deltaTime * (position + _myConstants.k3 * inputVelocity - _lastSmoothedPosition - k1_stable * _yd)
+            _storedUnsmoothedPosition = targetValue;
+            _lastSmoothedPosition = _lastSmoothedPosition + deltaTime * _yd; // Integrate targetValue by velocity.
+            _yd = _yd + deltaTime * (targetValue + _myConstants.k3 * inputVelocity - _lastSmoothedPosition - k1_stable * _yd)
                 / k2_stable; // Integrate velocity by acceleration.
             return _lastSmoothedPosition;
         }
 
-        public Vector2 Update(float deltaTime, Vector2 position)
+        public Vector2 Update(float deltaTime, Vector2 targetValue)
         {
             // Error catching.
             if (deltaTime <= 0)
@@ -57,12 +57,12 @@ namespace EasingToolkit.SecondOrderDynamics
             }
 
             // Calculating the velocity.
-            Vector2 inputVelocity = (position - _storedUnsmoothedPosition) / deltaTime;
-            return Update(deltaTime, position, inputVelocity);
+            Vector2 inputVelocity = (targetValue - _storedUnsmoothedPosition) / deltaTime;
+            return Update(deltaTime, targetValue, inputVelocity);
         }
 
-        public void UpdateConstants(SO_Constants constants) => _myConstants = constants;
-        public void UpdateConstants(float f, float z, float r) => UpdateConstants(new SO_Constants(f, z, r));
+        public void ChangeConstants(SO_Constants constants) => _myConstants = constants;
+        public void ChangeConstants(float frequency, float dampening, float initialResponse) => ChangeConstants(new SO_Constants(frequency, dampening, initialResponse));
 
         public void Reset()
         {
@@ -84,7 +84,7 @@ namespace EasingToolkit.SecondOrderDynamics
             _yd = Vector2.zero;
         }
 
-        // Fast constructor.
+        // Streamlined constructor.
         internal SecondOrder_2D(SO_Constants constants, Vector2 originalVector2)
         {
             _myConstants = constants;
