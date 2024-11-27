@@ -136,7 +136,7 @@
       "url": "https://packages.unity.com"
     },
     "com.veguista.easing_toolkit": {
-      "version": "file:Easing Toolkit",
+      "version": "file:easing_toolkit",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

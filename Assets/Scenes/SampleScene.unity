@@ -425,8 +425,6 @@ GameObject:
   - component: {fileID: 1327197615}
   - component: {fileID: 1327197614}
   - component: {fileID: 1327197613}
-  - component: {fileID: 1327197612}
-  - component: {fileID: 1327197616}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -434,19 +432,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1327197612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327197611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff12262274c8f4fbefb27a4243b577, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  secondOrderTransform: {fileID: 0}
 --- !u!23 &1327197613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -506,35 +491,12 @@ Transform:
   m_GameObject: {fileID: 1327197611}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.57, y: 0.98, z: 1.42}
+  m_LocalPosition: {x: 0.36, y: 0.98, z: -1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1327197616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327197611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7512b1a8a08318c4cb8d42a8ab3073c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _frequency: 1.05
-  _dampening: 1.04
-  _initialResponse: -0.69
-  followTransform: {fileID: 1761887669}
-  _whichDynamicType: 0
-  inputMode: 0
-  obtainTransformDataFromLocalOrWorld: 0
-  applyDynamicsToLocalOrWorld: 1
-  axisToFollow: "\x01"
-  refreshMode: 0
-  _runInEditor: 0
 --- !u!1 &1761887666
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 1761887666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.57, y: 3.103, z: 1.42}
+  m_LocalPosition: {x: 0.36, y: 0.98, z: -1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -628,13 +590,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761887666}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9156836570cb4443b672e945d885ec6, type: 3}
+  m_Script: {fileID: 11500000, guid: db84bbad6336ab640a360f564f7761b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _frequency: 1
   _dampening: 1
   _initialResponse: 0
-  followTransform: {fileID: 0}
+  followTransform: {fileID: 1327197615}
   _whichDynamicType: 0
   inputMode: 0
   obtainTransformDataFromLocalOrWorld: 1

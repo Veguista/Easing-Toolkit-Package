@@ -12,6 +12,7 @@ namespace CustomUI
     {
         // public VisualTreeAsset inspector_VisualTree_UXML;
         const string inspectorUXMLFilePath = "Packages//com.veguista.easing_toolkit//Editor//UXML//SecondOrderTransformUXML.uxml";
+        const string inspectorUSSFilePath = "Packages//com.veguista.easing_toolkit//Editor//USS//SO_CustomEditorStyles.uss";
 
         // Reference to the original script that creates the Editor.
         SecondOrderTransform transformScript;
@@ -29,15 +30,24 @@ namespace CustomUI
             VisualElement myInspectorRoot = new VisualElement();
 
             VisualTreeAsset inspector_VisualTree_UXML = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(inspectorUXMLFilePath);
-            
-            if(inspector_VisualTree_UXML == null)
+            StyleSheet inspector_StyleSheet_USS = AssetDatabase.LoadAssetAtPath<StyleSheet>(inspectorUSSFilePath);
+
+            if (inspector_VisualTree_UXML == null)
             {
                 Debug.LogError("No UXML file for SecondOrderScript's custom Inspector was found at path [" + 
                     inspectorUXMLFilePath + "].\nCannot load custom editor for SecondOrderTransform.");
                 return myInspectorRoot;
             }
-            
+
+            if (inspector_StyleSheet_USS == null)
+            {
+                Debug.LogError("No USS file for SecondOrderScript's custom Inspector was found at path [" +
+                    inspectorUXMLFilePath + "].\nCannot load custom editor for SecondOrderTransform.");
+                return myInspectorRoot;
+            }
+
             inspector_VisualTree_UXML.CloneTree(myInspectorRoot);
+            myInspectorRoot.styleSheets.Add(inspector_StyleSheet_USS);
 
             // Binding our runDynamicsInEditor Toggle.
             containerRunDynamicsInEditor = myInspectorRoot.Q<VisualElement>("containerRunDynamicsInEditor");
