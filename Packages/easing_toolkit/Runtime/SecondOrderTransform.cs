@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SecondOrderDynamics
+namespace EasingToolkit.SecondOrderDynamics
 {
     [ExecuteAlways]
     public class SecondOrderTransform : MonoBehaviour
