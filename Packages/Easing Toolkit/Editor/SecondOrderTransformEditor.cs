@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using EasingToolkit.SecondOrderDynamics;
+using SecondOrderDynamics;
 using UnityEditor.UIElements;
 
-namespace EasingToolkit.CustomUI
+namespace CustomUI
 {
     [CustomEditor(typeof(SecondOrderTransform))]
     public class SecondOrderTransformEditor : Editor

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace EasingToolkit.SecondOrderDynamics
+namespace SecondOrderDynamics
 {
     // Logic of the system exposed by t3ssel8r in the following video: https://www.youtube.com/watch?v=KPoeNZZ6H4s
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EasingToolkit.SecondOrderDynamics
+namespace SecondOrderDynamics
 {
     public struct TransformData
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace EasingToolkit.SecondOrderDynamics
+namespace SecondOrderDynamics
 {
     [ExecuteAlways]
     public class SecondOrderTransform : MonoBehaviour
@@ -259,15 +259,15 @@ namespace EasingToolkit.SecondOrderDynamics
             switch (_whichDynamicType)
             {
                 case DynamicsType.position:
-                    _positionDynamics.UpdateConstants(MyConstants);
+                    _positionDynamics.ChangeConstants(MyConstants);
                     break;
 
                 case DynamicsType.rotation:
-                    _rotationDynamics.UpdateConstants(MyConstants);
+                    _rotationDynamics.ChangeConstants(MyConstants);
                     break;
 
                 case DynamicsType.scale:
-                    _scaleDynamics.UpdateConstants(MyConstants);
+                    _scaleDynamics.ChangeConstants(MyConstants);
                     break;
             }
         }
