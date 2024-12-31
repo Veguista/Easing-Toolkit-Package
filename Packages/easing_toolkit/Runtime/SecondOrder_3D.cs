@@ -62,7 +62,7 @@ namespace EasingToolkit.SecondOrderDynamics
         }
 
         public void ChangeConstants(SO_Constants constants) => _myConstants = constants;
-        public void ChangeConstants(float frequency, float dampening, float initialResponse) => ChangeConstants(new SO_Constants(frequency, dampening, initialResponse));
+        public void ChangeConstants(float frequency, float dampening, float initialResponse) => _myConstants = new SO_Constants(frequency, dampening, initialResponse);
 
         public void Reset()
         {
@@ -74,7 +74,7 @@ namespace EasingToolkit.SecondOrderDynamics
         #region Constructors
 
         // Regular constructor (Used in outlier cases)
-        internal SecondOrder_3D(float f, float z, float r, Vector3 originalVector3)
+        public SecondOrder_3D(float f, float z, float r, Vector3 originalVector3)
         {
             _myConstants = new SO_Constants(f, z, r);
 

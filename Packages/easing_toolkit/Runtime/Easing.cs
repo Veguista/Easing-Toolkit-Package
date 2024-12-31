@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace EasingToolkit
 {
@@ -83,26 +84,6 @@ namespace EasingToolkit
         }
 
 
-        // These are all of the possible Easing processes.
-        // They can be visualized at https://easings.net/
-
-        /// <summary>
-        /// The different Easing types processes possible. They can be visualized at https://easings.net/.
-        /// </summary>
-        public enum EaseType
-        {
-            InSine, OutSine, InOutSine,
-            InQuad, OutQuad, InOutQuad,
-            InCubic, OutCubic, InOutCubic,
-            InQuart, OutQuart, InOutQuart,
-            InQuint, OutQuint, InOutQuint,
-            InExpo, OutExpo, InOutExpo,
-            InCirc, OutCirc, InOutCirc,
-            InBack, OutBack, InOutBack,
-            InElastic, OutElastic, InOutElastic,
-            InBounce, OutBounce, InOutBounce
-        }
-
         // Sine functions.
         static float InSine(float x) => 1 - Mathf.Cos((Mathf.PI * x) / 2);
         static float OutSine(float x) => Mathf.Sin((Mathf.PI * x) / 2);
@@ -158,7 +139,7 @@ namespace EasingToolkit
 
 
         // Expo functions.
-        static float InExpo(float x) => Mathf.Pow(2, 10 * (x - 1));
+        static float InExpo(float x) => x == 0 ? 0 :Mathf.Pow(2, 10 * (x - 1));
         static float OutExpo(float x) => 1 - InExpo(1 - x);
         static float InOutExpo(float x)
         {
@@ -194,8 +175,35 @@ namespace EasingToolkit
 
 
         // Elastic functions.
-        static float InElastic(float x) => 1 - OutElastic(1 - x);
-        static float OutElastic(float x) => Mathf.Pow(2, -10 * x) * Mathf.Sin((x - 0.3f / 4) * (2 * Mathf.PI) / 0.3f) + 1;
+        static private readonly float ElasticConstant = (float)(2 * Math.PI / 3);
+        static float InElastic(float x)
+        {
+            if(x == 0)
+            {
+                return 0;
+            }
+
+            if(x == 1)
+            {
+                return 1;
+            }
+            
+            return -Mathf.Pow(2, 10 * x - 10) * Mathf.Sin((x * 10 - 10.75f) * ElasticConstant);
+        }
+        static float OutElastic(float x)
+        {
+            if (x == 0)
+            {
+                return 0;
+            }
+
+            if (x == 1)
+            {
+                return 1;
+            }
+
+            return Mathf.Pow(2, -10 * x) * Mathf.Sin((x * 10 - 0.75f) * ElasticConstant) + 1;
+        }
         static float InOutElastic(float x)
         {
             if (x < 0.5)
@@ -213,12 +221,12 @@ namespace EasingToolkit
             {
                 return 7.5625f * x * x;
             }
-            else if (x < 2 / 2.75f)
+            if (x < 2 / 2.75f)
             {
                 x -= 1.5f / 2.75f;
                 return 7.5625f * x * x + 0.75f;
             }
-            else if (x < 2.5 / 2.75f)
+            if (x < 2.5 / 2.75f)
             {
                 x -= 2.25f / 2.75f;
                 return 7.5625f * x * x + 0.9375f;
@@ -236,5 +244,26 @@ namespace EasingToolkit
             else
                 return 1 - InBounce((1 - x) * 2) / 2;
         }
+    }
+
+
+    // These are all of the possible Easing processes.
+    // They can be visualized at https://easings.net/
+
+    /// <summary>
+    /// The different Easing types processes possible. They can be visualized at https://easings.net/.
+    /// </summary>
+    public enum EaseType
+    {
+        InSine, OutSine, InOutSine,
+        InQuad, OutQuad, InOutQuad,
+        InCubic, OutCubic, InOutCubic,
+        InQuart, OutQuart, InOutQuart,
+        InQuint, OutQuint, InOutQuint,
+        InExpo, OutExpo, InOutExpo,
+        InCirc, OutCirc, InOutCirc,
+        InBack, OutBack, InOutBack,
+        InElastic, OutElastic, InOutElastic,
+        InBounce, OutBounce, InOutBounce
     }
 }

@@ -104,7 +104,7 @@ namespace EasingToolkit.SecondOrderDynamics
         }
 
         // Streamlined constructor.
-        public SecondOrder_Rotation(SO_Constants constants, Quaternion originalRotation)
+        internal SecondOrder_Rotation(SO_Constants constants, Quaternion originalRotation)
         {
             _dynamics_X = new SecondOrder_1D(constants, originalRotation.x);
             _dynamics_Y = new SecondOrder_1D(constants, originalRotation.y);

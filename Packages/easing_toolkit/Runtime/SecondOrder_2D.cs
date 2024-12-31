@@ -74,7 +74,7 @@ namespace EasingToolkit.SecondOrderDynamics
         #region Constructors
 
         // Regular constructor (Used in outlier cases)
-        internal SecondOrder_2D(float f, float z, float r, Vector2 originalVector2)
+        public SecondOrder_2D(float f, float z, float r, Vector2 originalVector2)
         {
             _myConstants = new SO_Constants(f, z, r);
 
