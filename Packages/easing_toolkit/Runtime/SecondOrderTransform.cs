@@ -139,7 +139,7 @@ namespace EasingToolkit.SecondOrderDynamics
                 return _myConstants.Value;
             }
 
-            set
+            private set
             {
                 _myConstants = value;
             }
@@ -286,7 +286,7 @@ namespace EasingToolkit.SecondOrderDynamics
             // Anything beyond this point has the inputMode [followTransform].
             if(followTransform == null)
             {
-                Debug.LogError("Cannot initialize the dynamics of the SecondOrderTransform cause there is a missing reference to a " +
+                Debug.LogWarning("Cannot initialize the dynamics of the SecondOrderTransform cause there is a missing reference to a " +
                     "[followTransform].\nSet the reference or change the input mode to [storedTransformData].");
                 return;
             }
