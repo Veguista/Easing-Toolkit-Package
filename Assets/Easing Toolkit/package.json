@@ -16,5 +16,17 @@
     "name": "Veguista",
     "email": "pgv200080@gmail.com",
     "url": "https://pgv200080.wixsite.com/pablogvportfolio"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Second Order Transform Sample",
+      "description": "Contains a scene showcasing an array of different use cases of the SecondOrderTransform component.",
+      "path": "Samples~/Simple Easing Sample"
+    },
+    {
+      "displayName": "Linear Easing Sample",
+      "description": "Contains a scene showcasing all of the different Linear Eases that can be applied using the Easing class.",
+      "path": "Samples~/Second Order Transform Sample"
+    },
+  ]
 }
