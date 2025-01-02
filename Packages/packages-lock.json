@@ -135,12 +135,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.veguista.easing_toolkit": {
-      "version": "file:easing_toolkit",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
-    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
